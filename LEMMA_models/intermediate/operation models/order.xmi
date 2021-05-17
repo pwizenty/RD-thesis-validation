@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="ASCII"?>
+<intermediate:IntermediateOperationModel xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:intermediate="http://www.fhdo.de/lemma/operation/intermediate" sourceModelUri="file:///Users/phil/Entwicklung/FuE-Arbeit/OnlineShop_Github_Validierung/LEMMA_models/OrderService/order.operation">
+  <imports name="orderService" importUri="file:///Users/phil/Entwicklung/FuE-Arbeit/pw_lemma/runtime-EclipseApplication/Microservices2020_OrderSystem/intermediate/service models/order.xmi" importTypeName="MICROSERVICES"/>
+  <imports name="container_base" importUri="file:///Users/phil/Entwicklung/FuE-Arbeit/OnlineShop_Github_Validierung/LEMMA_models/Technology/container_base.technology" importTypeName="TECHNOLOGY"/>
+  <imports name="protocol" importUri="file:///Users/phil/Entwicklung/FuE-Arbeit/OnlineShop_Github_Validierung/LEMMA_models/Technology/protocol.technology" importTypeName="TECHNOLOGY"/>
+  <imports name="mongo" importUri="file:///Users/phil/Entwicklung/FuE-Arbeit/pw_lemma/runtime-EclipseApplication/Microservices2020_OrderSystem/intermediate/operation models/mongodb.xmi" importTypeName="OPERATION_NODES"/>
+  <imports name="zuul" importUri="file:///Users/phil/Entwicklung/FuE-Arbeit/pw_lemma/runtime-EclipseApplication/Microservices2020_OrderSystem/intermediate/operation models/zuul.xmi" importTypeName="OPERATION_NODES"/>
+  <imports name="eureka" importUri="file:///Users/phil/Entwicklung/FuE-Arbeit/pw_lemma/runtime-EclipseApplication/Microservices2020_OrderSystem/intermediate/operation models/eureka.xmi" importTypeName="OPERATION_NODES"/>
+  <containers name="OrderService" imports="//@imports.1 //@imports.2" operationEnvironment="//@containers.0/@technologyReference/@technology/@environment" qualifiedDeploymentTechnologyName="container_base.Kubernetes">
+    <deployedServices name="de.fhdo.online_shop.orderservice.Orderservice" version="v01" qualifiedName="v01.de.fhdo.online_shop.orderservice.Orderservice" imported="true" import="//@imports.0" effectivelyImplemented="true" microserviceType="FUNCTIONAL" visibility="PUBLIC"/>
+    <endpoints communicationType="SYNCHRONOUS" protocol="rest" dataFormat="application/json" technology="//@containers.0/@endpoints.0/@endpointTechnology">
+      <addresses>http://localhost:8083/order</addresses>
+      <endpointTechnology name="protocol" import="//@imports.2"/>
+    </endpoints>
+    <defaultValues value="OrderService" technologySpecificProperty="//@containers.0/@technologyReference/@technology/@properties.0"/>
+    <defaultValues value="8083" technologySpecificProperty="//@containers.0/@technologyReference/@technology/@properties.1"/>
+    <defaultValues value="mongo" technologySpecificProperty="//@containers.0/@technologyReference/@technology/@properties.5"/>
+    <defaultValues value="27017" technologySpecificProperty="//@containers.0/@technologyReference/@technology/@properties.6"/>
+    <defaultValues value="order" technologySpecificProperty="//@containers.0/@technologyReference/@technology/@properties.8"/>
+    <defaultValues value="http://eureka:8761" technologySpecificProperty="//@containers.0/@technologyReference/@technology/@properties.11"/>
+    <dependsOnNodes imported="true" name="Eureka" qualifiedTechnologyName="Eureka.Eureka" import="//@imports.5"/>
+    <dependsOnNodes imported="true" name="MongoDB" qualifiedTechnologyName="MongoDB.MongoDB" import="//@imports.3"/>
+    <dependsOnNodes imported="true" name="Zuul" qualifiedTechnologyName="Zuul.Zuul" import="//@imports.4"/>
+    <technologyReference import="//@imports.1">
+      <technology name="Kubernetes">
+        <environment environmentName="openjdk:11-jdk-slim" default="true"/>
+        <properties name="springApplicationName" type="string"/>
+        <properties name="serverPort" type="int"/>
+        <properties name="springDatasourceUsername" type="string"/>
+        <properties name="springDatasourcePassword" type="string"/>
+        <properties name="springDatasourceUrl" type="string"/>
+        <properties name="springDataMongodbHost" type="string"/>
+        <properties name="springDataMongodbPort" type="int"/>
+        <properties name="springDataMongodbUri" type="string"/>
+        <properties name="springDataMongodbDatabase" type="string"/>
+        <properties name="springDataMongodbUsername" type="string"/>
+        <properties name="stringDataMongodbPassword" type="string"/>
+        <properties name="eurekaUri" type="string"/>
+      </technology>
+    </technologyReference>
+  </containers>
+</intermediate:IntermediateOperationModel>

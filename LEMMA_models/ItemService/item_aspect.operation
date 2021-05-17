@@ -1,0 +1,94 @@
+import microservices from "item.services" as itemService
+import technology from "../Technology/container_base.technology" as container_base
+import technology from "../Technology/protocol.technology" as ^protocol
+
+@technology(container_base)
+@technology(^protocol)
+container ItemService deployment technology container_base::_deployment.Kubernetes
+    with operation environment "openjdk:11-jdk-slim"
+    deploys itemService::v01.de.fhdo.online_shop.itemservice.Itemservice {
+
+        aspects {
+        container_base::_aspects.Dockerfile(
+            '
+            FROM adoptopenjdk/openjdk11
+            ENV APP_FILE itemService-0.0.1-SNAPSHOT.jar
+            ENV APP_HOME /usr/apps
+            EXPOSE 8081:8081
+            COPY target/$APP_FILE $APP_HOME/
+            WORKDIR $APP_HOME
+            ENTRYPOINT ["sh", "-c"]
+            CMD ["exec java -jar $APP_FILE"]
+            '
+        );
+
+        container_base::_aspects.ComposePart(
+            '
+              itemService:
+                build: itemService/
+                container_name: itemService
+                ports:
+                  - "8081:8081"
+            '
+        );
+
+        container_base::_aspects.KubernetesDeployment(
+            '
+            apiVersion: apps/v1
+            kind: Deployment
+            metadata:
+              creationTimestamp: null
+              labels:
+                app: itemService
+              name: itemService
+            spec:
+              replicas: 1
+              selector:
+                matchLabels:
+                  app: itemService
+              strategy: {}
+              template:
+                metadata:
+                  creationTimestamp: null
+                  labels:
+                    app: itemService
+                spec:
+                  containers:
+                  - image: itemService
+                    imagePullPolicy: "Never"
+                    name: itemService
+                    resources: {}
+            status: {}
+            ---
+            apiVersion: v1
+            kind: Service
+            metadata:
+              creationTimestamp: null
+              labels:
+                app: itemService
+              name: itemService
+            spec:
+              ports:
+              - name: 8081-8081
+                port: 8081
+                protocol: TCP
+                targetPort: 8081
+              selector:
+                app: itemService
+              type: ClusterIP
+            status:
+              loadBalancer: {}
+            '
+        );
+    }
+        default values {
+            springApplicationName="ItemService"
+            serverPort=8081
+            springDataMongodbHost="mongo"
+            springDataMongodbPort=27017
+            springDataMongodbDatabase="item"
+            basic endpoints {^protocol::_protocols.rest : "http://localhost:8081/item";}
+
+
+        }
+}

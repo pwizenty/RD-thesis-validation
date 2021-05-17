@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="ASCII"?>
+<intermediate:IntermediateServiceModel xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:intermediate="http://www.fhdo.de/lemma/service/intermediate" xmlns:intermediate_1="http://www.fhdo.de/lemma/data/intermediate" sourceModelUri="file:///Users/phil/Entwicklung/FuE-Arbeit/OnlineShop_Github_Validierung/LEMMA_models/OrderService/order.services">
+  <imports name="orderData" importUri="file:///Users/phil/Entwicklung/FuE-Arbeit/OnlineShop_Github_Validierung/LEMMA_models/OrderService/order.data" importTypeName="DATATYPES"/>
+  <imports name="spring" importUri="file:///Users/phil/Entwicklung/FuE-Arbeit/OnlineShop_Github_Validierung/LEMMA_models/Technology/spring.technology" importTypeName="TECHNOLOGY"/>
+  <microservices sourceModelUri="file:///Users/phil/Entwicklung/FuE-Arbeit/OnlineShop_Github_Validierung/LEMMA_models/OrderService/order.services" name="de.fhdo.online_shop.orderservice.Orderservice" version="v01" qualifiedName="v01.de.fhdo.online_shop.orderservice.Orderservice" type="FUNCTIONAL" visibility="PUBLIC" effectivelyImplemented="true">
+    <technologies name="spring" import="//@imports.1"/>
+    <protocols communicationType="ASYNCHRONOUS" protocol="mqtt" dataFormat="application/xml"/>
+    <protocols communicationType="SYNCHRONOUS" protocol="rest" dataFormat="application/json"/>
+    <interfaces name="UserInterface" qualifiedName="v01.de.fhdo.online_shop.orderservice.Orderservice.UserInterface" visibility="PUBLIC" hasImplementedOperations="true">
+      <endpoints communicationType="SYNCHRONOUS" protocol="rest" dataFormat="application/json" technology="//@microservices.0/@technologies.0">
+        <addresses>/resources/v1</addresses>
+      </endpoints>
+      <protocols communicationType="ASYNCHRONOUS" protocol="mqtt" dataFormat="application/xml"/>
+      <protocols communicationType="SYNCHRONOUS" protocol="rest" dataFormat="application/json"/>
+      <operations name="createOrder" qualifiedName="v01.de.fhdo.online_shop.orderservice.Orderservice.UserInterface.createOrder" visibility="PUBLIC">
+        <endpoints communicationType="SYNCHRONOUS" protocol="rest" dataFormat="application/json" technology="//@microservices.0/@technologies.0">
+          <addresses>/order</addresses>
+        </endpoints>
+        <protocols communicationType="ASYNCHRONOUS" protocol="mqtt" dataFormat="application/xml"/>
+        <protocols communicationType="SYNCHRONOUS" protocol="rest" dataFormat="application/json"/>
+        <aspects name="PostMapping" qualifiedName="springcloud.PostMapping" import="//@imports.1">
+          <properties name="value" type="string"/>
+        </aspects>
+        <parameters name="order" qualifiedName="v01.de.fhdo.online_shop.orderservice.Orderservice.UserInterface.createOrder.order" exchangePattern="INOUT" communicationType="SYNCHRONOUS">
+          <type xsi:type="intermediate_1:IntermediateImportedComplexType" name="Order" origin="DATA_MODEL" kind="STRUCTURE" qualifiedName="v01.Order.Order" import="//@imports.0"/>
+          <originalType xsi:type="intermediate_1:IntermediateImportedComplexType" name="Order" origin="DATA_MODEL" kind="STRUCTURE" qualifiedName="v01.Order.Order" import="//@imports.0"/>
+          <aspects name="RequestBody" qualifiedName="springcloud.RequestBody" import="//@imports.1">
+            <properties name="value" type="string"/>
+          </aspects>
+        </parameters>
+      </operations>
+      <operations name="updateOrder" qualifiedName="v01.de.fhdo.online_shop.orderservice.Orderservice.UserInterface.updateOrder" visibility="PUBLIC">
+        <endpoints communicationType="SYNCHRONOUS" protocol="rest" dataFormat="application/json" technology="//@microservices.0/@technologies.0">
+          <addresses>/order</addresses>
+        </endpoints>
+        <protocols communicationType="ASYNCHRONOUS" protocol="mqtt" dataFormat="application/xml"/>
+        <protocols communicationType="SYNCHRONOUS" protocol="rest" dataFormat="application/json"/>
+        <aspects name="PutMapping" qualifiedName="springcloud.PutMapping" import="//@imports.1">
+          <properties name="value" type="string"/>
+        </aspects>
+        <parameters name="order" qualifiedName="v01.de.fhdo.online_shop.orderservice.Orderservice.UserInterface.updateOrder.order" exchangePattern="INOUT" communicationType="SYNCHRONOUS">
+          <type xsi:type="intermediate_1:IntermediateImportedComplexType" name="Order" origin="DATA_MODEL" kind="STRUCTURE" qualifiedName="v01.Order.Order" import="//@imports.0"/>
+          <originalType xsi:type="intermediate_1:IntermediateImportedComplexType" name="Order" origin="DATA_MODEL" kind="STRUCTURE" qualifiedName="v01.Order.Order" import="//@imports.0"/>
+          <aspects name="RequestBody" qualifiedName="springcloud.RequestBody" import="//@imports.1">
+            <properties name="value" type="string"/>
+          </aspects>
+        </parameters>
+      </operations>
+      <operations name="readOrder" qualifiedName="v01.de.fhdo.online_shop.orderservice.Orderservice.UserInterface.readOrder" visibility="PUBLIC">
+        <endpoints communicationType="SYNCHRONOUS" protocol="rest" dataFormat="application/json" technology="//@microservices.0/@technologies.0">
+          <addresses>/order/{id}</addresses>
+        </endpoints>
+        <protocols communicationType="ASYNCHRONOUS" protocol="mqtt" dataFormat="application/xml"/>
+        <protocols communicationType="SYNCHRONOUS" protocol="rest" dataFormat="application/json"/>
+        <aspects name="GetMapping" qualifiedName="springcloud.GetMapping" import="//@imports.1">
+          <properties name="value" type="string"/>
+        </aspects>
+        <parameters name="orderId" qualifiedName="v01.de.fhdo.online_shop.orderservice.Orderservice.UserInterface.readOrder.orderId" exchangePattern="IN" communicationType="SYNCHRONOUS">
+          <type xsi:type="intermediate_1:IntermediateImportedTechnologySpecificType" name="Long" origin="TECHNOLOGY" kind="PRIMITIVE" qualifiedName="springcloud._types.Long" import="//@imports.1"/>
+          <originalType xsi:type="intermediate_1:IntermediatePrimitiveType" name="long" origin="BUILTIN" kind="PRIMITIVE" size="64"/>
+          <aspects name="RequestParam" qualifiedName="springcloud.RequestParam" import="//@imports.1">
+            <properties name="value" type="string"/>
+            <properties name="required" type="boolean" defaultValue="false"/>
+            <properties name="defaultValue" type="string" defaultValue=""/>
+            <propertyValues value="id" property="//@microservices.0/@interfaces.0/@operations.2/@parameters.0/@aspects.0/@properties.0"/>
+          </aspects>
+        </parameters>
+        <parameters name="order" qualifiedName="v01.de.fhdo.online_shop.orderservice.Orderservice.UserInterface.readOrder.order" exchangePattern="OUT" communicationType="SYNCHRONOUS">
+          <type xsi:type="intermediate_1:IntermediateImportedComplexType" name="Order" origin="DATA_MODEL" kind="STRUCTURE" qualifiedName="v01.Order.Order" import="//@imports.0"/>
+          <originalType xsi:type="intermediate_1:IntermediateImportedComplexType" name="Order" origin="DATA_MODEL" kind="STRUCTURE" qualifiedName="v01.Order.Order" import="//@imports.0"/>
+        </parameters>
+      </operations>
+      <operations name="readAllOrders" qualifiedName="v01.de.fhdo.online_shop.orderservice.Orderservice.UserInterface.readAllOrders" visibility="PUBLIC">
+        <endpoints communicationType="SYNCHRONOUS" protocol="rest" dataFormat="application/json" technology="//@microservices.0/@technologies.0">
+          <addresses>/orders</addresses>
+        </endpoints>
+        <protocols communicationType="ASYNCHRONOUS" protocol="mqtt" dataFormat="application/xml"/>
+        <protocols communicationType="SYNCHRONOUS" protocol="rest" dataFormat="application/json"/>
+        <aspects name="GetMapping" qualifiedName="springcloud.GetMapping" import="//@imports.1">
+          <properties name="value" type="string"/>
+        </aspects>
+        <parameters name="orders" qualifiedName="v01.de.fhdo.online_shop.orderservice.Orderservice.UserInterface.readAllOrders.orders" exchangePattern="OUT" communicationType="SYNCHRONOUS">
+          <type xsi:type="intermediate_1:IntermediateImportedComplexType" name="Order" origin="DATA_MODEL" kind="STRUCTURE" qualifiedName="v01.Order.Order" import="//@imports.0"/>
+          <originalType xsi:type="intermediate_1:IntermediateImportedComplexType" name="Order" origin="DATA_MODEL" kind="STRUCTURE" qualifiedName="v01.Order.Order" import="//@imports.0"/>
+        </parameters>
+      </operations>
+      <operations name="deleteOrder" qualifiedName="v01.de.fhdo.online_shop.orderservice.Orderservice.UserInterface.deleteOrder" visibility="PUBLIC">
+        <endpoints communicationType="SYNCHRONOUS" protocol="rest" dataFormat="application/json" technology="//@microservices.0/@technologies.0">
+          <addresses>/order</addresses>
+        </endpoints>
+        <protocols communicationType="ASYNCHRONOUS" protocol="mqtt" dataFormat="application/xml"/>
+        <protocols communicationType="SYNCHRONOUS" protocol="rest" dataFormat="application/json"/>
+        <aspects name="DeleteMapping" qualifiedName="springcloud.DeleteMapping" import="//@imports.1">
+          <properties name="value" type="string"/>
+        </aspects>
+        <parameters name="orderid" qualifiedName="v01.de.fhdo.online_shop.orderservice.Orderservice.UserInterface.deleteOrder.orderid" exchangePattern="IN" communicationType="SYNCHRONOUS">
+          <type xsi:type="intermediate_1:IntermediateImportedTechnologySpecificType" name="Long" origin="TECHNOLOGY" kind="PRIMITIVE" qualifiedName="springcloud._types.Long" import="//@imports.1"/>
+          <originalType xsi:type="intermediate_1:IntermediatePrimitiveType" name="long" origin="BUILTIN" kind="PRIMITIVE" size="64"/>
+          <aspects name="RequestParam" qualifiedName="springcloud.RequestParam" import="//@imports.1">
+            <properties name="value" type="string"/>
+            <properties name="required" type="boolean" defaultValue="false"/>
+            <properties name="defaultValue" type="string" defaultValue=""/>
+            <propertyValues value="id" property="//@microservices.0/@interfaces.0/@operations.4/@parameters.0/@aspects.0/@properties.0"/>
+          </aspects>
+        </parameters>
+        <parameters name="order" qualifiedName="v01.de.fhdo.online_shop.orderservice.Orderservice.UserInterface.deleteOrder.order" exchangePattern="OUT" communicationType="SYNCHRONOUS">
+          <type xsi:type="intermediate_1:IntermediateImportedComplexType" name="Order" origin="DATA_MODEL" kind="STRUCTURE" qualifiedName="v01.Order.Order" import="//@imports.0"/>
+          <originalType xsi:type="intermediate_1:IntermediateImportedComplexType" name="Order" origin="DATA_MODEL" kind="STRUCTURE" qualifiedName="v01.Order.Order" import="//@imports.0"/>
+        </parameters>
+      </operations>
+    </interfaces>
+  </microservices>
+</intermediate:IntermediateServiceModel>

@@ -1,0 +1,23 @@
+import technology from "../Technology/container_base.technology" as container_base
+import technology from "../Technology/mariadb.technology" as mariadb
+import technology from "../Technology/protocol.technology" as ^protocol
+import nodes from "../CustomerService/customer.operation" as CustomerService
+
+@technology(container_base)
+@technology(mariadb)
+@technology(^protocol)
+MariaDB is mariadb::_infrastructure.MariaDB with operation environment "docker/mariadb:latest"
+	used by nodes CustomerService::CustomerService {
+        default values {
+            userName="admin"
+            hostName="maridb"
+            userPassword="password"
+            rootPassword="password"
+            imageType="dockerhub"
+            port="3306"
+            dataBase="customer"
+        }
+        endpoints {
+			^protocol::_protocols.rest: "localhost:3307";
+        }
+}

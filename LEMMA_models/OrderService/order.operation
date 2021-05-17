@@ -1,0 +1,26 @@
+import microservices from "order.services" as orderService
+import technology from "../Technology/container_base.technology" as container_base
+import technology from "../Technology/protocol.technology" as ^protocol
+import nodes from "../infrastructure/mongodb.operation" as mongo
+import nodes from "../infrastructure/zuul.operation" as zuul
+import nodes from "../infrastructure/eureka.operation" as eureka
+
+@technology(container_base)
+@technology(^protocol)
+container OrderService deployment technology container_base::_deployment.Kubernetes
+    with operation environment "openjdk:11-jdk-slim"
+    deploys orderService::v01.de.fhdo.online_shop.orderservice.Orderservice
+    depends on nodes eureka::Eureka,
+    	mongo::MongoDB,
+    	zuul::Zuul
+    {
+        default values {
+            springApplicationName="OrderService"
+            serverPort=8083
+            springDataMongodbHost="mongo"
+            springDataMongodbPort=27017
+            springDataMongodbDatabase="order"
+            eurekaUri="http://eureka:8761"
+            basic endpoints {^protocol::_protocols.rest : "http://localhost:8083/order";}
+        }
+}

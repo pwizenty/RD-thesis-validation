@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="ASCII"?>
+<intermediate:IntermediateServiceModel xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:intermediate="http://www.fhdo.de/lemma/service/intermediate" xmlns:intermediate_1="http://www.fhdo.de/lemma/data/intermediate" sourceModelUri="file:///Users/phil/Entwicklung/FuE-Arbeit/OnlineShop_Github_Validierung/LEMMA_models/ItemService/item.services">
+  <imports name="itemData" importUri="file:///Users/phil/Entwicklung/FuE-Arbeit/OnlineShop_Github_Validierung/LEMMA_models/ItemService/item.data" importTypeName="DATATYPES"/>
+  <imports name="java" importUri="file:///Users/phil/Entwicklung/FuE-Arbeit/OnlineShop_Github_Validierung/LEMMA_models/Technology/javaWithSpring.technology" importTypeName="TECHNOLOGY"/>
+  <microservices sourceModelUri="file:///Users/phil/Entwicklung/FuE-Arbeit/OnlineShop_Github_Validierung/LEMMA_models/ItemService/item.services" name="de.fhdo.online_shop.itemservice.Itemservice" version="v01" qualifiedName="v01.de.fhdo.online_shop.itemservice.Itemservice" type="FUNCTIONAL" visibility="PUBLIC" effectivelyImplemented="true">
+    <technologies name="java" import="//@imports.1"/>
+    <protocols communicationType="ASYNCHRONOUS" protocol="mqtt" dataFormat="application/xml"/>
+    <protocols communicationType="SYNCHRONOUS" protocol="rest" dataFormat="application/json"/>
+    <interfaces name="ItemInterface" qualifiedName="v01.de.fhdo.online_shop.itemservice.Itemservice.ItemInterface" visibility="PUBLIC" hasImplementedOperations="true">
+      <endpoints communicationType="SYNCHRONOUS" protocol="rest" dataFormat="application/json" technology="//@microservices.0/@technologies.0">
+        <addresses>/resources/v1</addresses>
+      </endpoints>
+      <protocols communicationType="ASYNCHRONOUS" protocol="mqtt" dataFormat="application/xml"/>
+      <protocols communicationType="SYNCHRONOUS" protocol="rest" dataFormat="application/json"/>
+      <operations name="createItem" qualifiedName="v01.de.fhdo.online_shop.itemservice.Itemservice.ItemInterface.createItem" visibility="PUBLIC">
+        <endpoints communicationType="SYNCHRONOUS" protocol="rest" dataFormat="application/json" technology="//@microservices.0/@technologies.0">
+          <addresses>/item</addresses>
+        </endpoints>
+        <protocols communicationType="ASYNCHRONOUS" protocol="mqtt" dataFormat="application/xml"/>
+        <protocols communicationType="SYNCHRONOUS" protocol="rest" dataFormat="application/json"/>
+        <aspects name="PostMapping" qualifiedName="javaWithSpring.PostMapping" import="//@imports.1">
+          <featureNames>SINGLE_VALUED</featureNames>
+        </aspects>
+        <parameters name="item" qualifiedName="v01.de.fhdo.online_shop.itemservice.Itemservice.ItemInterface.createItem.item" exchangePattern="INOUT" communicationType="SYNCHRONOUS">
+          <type xsi:type="intermediate_1:IntermediateImportedComplexType" name="Item" origin="DATA_MODEL" kind="STRUCTURE" qualifiedName="v01.Item.Item" import="//@imports.0"/>
+          <originalType xsi:type="intermediate_1:IntermediateImportedComplexType" name="Item" origin="DATA_MODEL" kind="STRUCTURE" qualifiedName="v01.Item.Item" import="//@imports.0"/>
+        </parameters>
+      </operations>
+      <operations name="updateItem" qualifiedName="v01.de.fhdo.online_shop.itemservice.Itemservice.ItemInterface.updateItem" visibility="PUBLIC">
+        <endpoints communicationType="SYNCHRONOUS" protocol="rest" dataFormat="application/json" technology="//@microservices.0/@technologies.0">
+          <addresses>/item</addresses>
+        </endpoints>
+        <protocols communicationType="ASYNCHRONOUS" protocol="mqtt" dataFormat="application/xml"/>
+        <protocols communicationType="SYNCHRONOUS" protocol="rest" dataFormat="application/json"/>
+        <aspects name="PutMapping" qualifiedName="javaWithSpring.PutMapping" import="//@imports.1">
+          <featureNames>SINGLE_VALUED</featureNames>
+        </aspects>
+        <parameters name="item" qualifiedName="v01.de.fhdo.online_shop.itemservice.Itemservice.ItemInterface.updateItem.item" exchangePattern="INOUT" communicationType="SYNCHRONOUS">
+          <type xsi:type="intermediate_1:IntermediateImportedComplexType" name="Item" origin="DATA_MODEL" kind="STRUCTURE" qualifiedName="v01.Item.Item" import="//@imports.0"/>
+          <originalType xsi:type="intermediate_1:IntermediateImportedComplexType" name="Item" origin="DATA_MODEL" kind="STRUCTURE" qualifiedName="v01.Item.Item" import="//@imports.0"/>
+        </parameters>
+      </operations>
+      <operations name="readItem" qualifiedName="v01.de.fhdo.online_shop.itemservice.Itemservice.ItemInterface.readItem" visibility="PUBLIC">
+        <endpoints communicationType="SYNCHRONOUS" protocol="rest" dataFormat="application/json" technology="//@microservices.0/@technologies.0">
+          <addresses>/item/{id}</addresses>
+        </endpoints>
+        <protocols communicationType="ASYNCHRONOUS" protocol="mqtt" dataFormat="application/xml"/>
+        <protocols communicationType="SYNCHRONOUS" protocol="rest" dataFormat="application/json"/>
+        <aspects name="GetMapping" qualifiedName="javaWithSpring.GetMapping" import="//@imports.1">
+          <featureNames>SINGLE_VALUED</featureNames>
+        </aspects>
+        <parameters name="id" qualifiedName="v01.de.fhdo.online_shop.itemservice.Itemservice.ItemInterface.readItem.id" exchangePattern="IN" communicationType="SYNCHRONOUS">
+          <type xsi:type="intermediate_1:IntermediateImportedTechnologySpecificType" name="String" origin="TECHNOLOGY" kind="PRIMITIVE" qualifiedName="javaWithSpring._types.String" import="//@imports.1"/>
+          <originalType xsi:type="intermediate_1:IntermediatePrimitiveType" name="string" origin="BUILTIN" kind="PRIMITIVE"/>
+          <aspects name="RequestParam" qualifiedName="javaWithSpring.RequestParam" import="//@imports.1">
+            <featureNames>SINGLE_VALUED</featureNames>
+            <properties name="value" type="string"/>
+            <properties name="defaultValue" type="string" defaultValue=""/>
+            <propertyValues value="id" property="//@microservices.0/@interfaces.0/@operations.2/@parameters.0/@aspects.0/@properties.0"/>
+          </aspects>
+        </parameters>
+        <parameters name="item" qualifiedName="v01.de.fhdo.online_shop.itemservice.Itemservice.ItemInterface.readItem.item" exchangePattern="OUT" communicationType="SYNCHRONOUS">
+          <type xsi:type="intermediate_1:IntermediateImportedComplexType" name="Item" origin="DATA_MODEL" kind="STRUCTURE" qualifiedName="v01.Item.Item" import="//@imports.0"/>
+          <originalType xsi:type="intermediate_1:IntermediateImportedComplexType" name="Item" origin="DATA_MODEL" kind="STRUCTURE" qualifiedName="v01.Item.Item" import="//@imports.0"/>
+        </parameters>
+      </operations>
+      <operations name="readAllItems" qualifiedName="v01.de.fhdo.online_shop.itemservice.Itemservice.ItemInterface.readAllItems" visibility="PUBLIC">
+        <endpoints communicationType="SYNCHRONOUS" protocol="rest" dataFormat="application/json" technology="//@microservices.0/@technologies.0">
+          <addresses>/items</addresses>
+        </endpoints>
+        <protocols communicationType="ASYNCHRONOUS" protocol="mqtt" dataFormat="application/xml"/>
+        <protocols communicationType="SYNCHRONOUS" protocol="rest" dataFormat="application/json"/>
+        <aspects name="GetMapping" qualifiedName="javaWithSpring.GetMapping" import="//@imports.1">
+          <featureNames>SINGLE_VALUED</featureNames>
+        </aspects>
+        <parameters name="items" qualifiedName="v01.de.fhdo.online_shop.itemservice.Itemservice.ItemInterface.readAllItems.items" exchangePattern="OUT" communicationType="SYNCHRONOUS">
+          <type xsi:type="intermediate_1:IntermediateImportedComplexType" name="Item" origin="DATA_MODEL" kind="STRUCTURE" qualifiedName="v01.Item.Item" import="//@imports.0"/>
+          <originalType xsi:type="intermediate_1:IntermediateImportedComplexType" name="Item" origin="DATA_MODEL" kind="STRUCTURE" qualifiedName="v01.Item.Item" import="//@imports.0"/>
+        </parameters>
+      </operations>
+      <operations name="deleteItem" qualifiedName="v01.de.fhdo.online_shop.itemservice.Itemservice.ItemInterface.deleteItem" visibility="PUBLIC">
+        <endpoints communicationType="SYNCHRONOUS" protocol="rest" dataFormat="application/json" technology="//@microservices.0/@technologies.0">
+          <addresses>/item</addresses>
+        </endpoints>
+        <protocols communicationType="ASYNCHRONOUS" protocol="mqtt" dataFormat="application/xml"/>
+        <protocols communicationType="SYNCHRONOUS" protocol="rest" dataFormat="application/json"/>
+        <aspects name="DeleteMapping" qualifiedName="javaWithSpring.DeleteMapping" import="//@imports.1">
+          <featureNames>SINGLE_VALUED</featureNames>
+        </aspects>
+        <parameters name="item" qualifiedName="v01.de.fhdo.online_shop.itemservice.Itemservice.ItemInterface.deleteItem.item" exchangePattern="IN" communicationType="SYNCHRONOUS">
+          <type xsi:type="intermediate_1:IntermediateImportedComplexType" name="Item" origin="DATA_MODEL" kind="STRUCTURE" qualifiedName="v01.Item.Item" import="//@imports.0"/>
+          <originalType xsi:type="intermediate_1:IntermediateImportedComplexType" name="Item" origin="DATA_MODEL" kind="STRUCTURE" qualifiedName="v01.Item.Item" import="//@imports.0"/>
+        </parameters>
+      </operations>
+    </interfaces>
+  </microservices>
+</intermediate:IntermediateServiceModel>

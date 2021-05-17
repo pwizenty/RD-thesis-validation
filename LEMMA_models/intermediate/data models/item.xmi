@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="ASCII"?>
+<intermediate:IntermediateDataModel xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:intermediate="http://www.fhdo.de/lemma/data/intermediate" sourceModelUri="file:///Users/phil/Development/FuE-Arbeit/lemma_models/Microservices2020_OrderSystem/ItemService/item.data">
+  <versions name="v01">
+    <contexts name="Item" qualifiedName="v01.Item">
+      <complexTypes xsi:type="intermediate:IntermediateDataStructure" name="Item" origin="DATA_MODEL" kind="STRUCTURE" qualifiedName="v01.Item.Item">
+        <featureNames>ENTITY</featureNames>
+        <dataFields name="id" qualifiedName="v01.Item.Item.id">
+          <featureNames>IDENTIFIER</featureNames>
+          <type xsi:type="intermediate:IntermediatePrimitiveType" name="string" origin="BUILTIN" kind="PRIMITIVE"/>
+          <originalType xsi:type="intermediate:IntermediatePrimitiveType" name="string" origin="BUILTIN" kind="PRIMITIVE"/>
+        </dataFields>
+        <dataFields name="itemanme" qualifiedName="v01.Item.Item.itemanme">
+          <type xsi:type="intermediate:IntermediatePrimitiveType" name="string" origin="BUILTIN" kind="PRIMITIVE"/>
+          <originalType xsi:type="intermediate:IntermediatePrimitiveType" name="string" origin="BUILTIN" kind="PRIMITIVE"/>
+        </dataFields>
+        <dataFields name="description" qualifiedName="v01.Item.Item.description">
+          <type xsi:type="intermediate:IntermediatePrimitiveType" name="string" origin="BUILTIN" kind="PRIMITIVE"/>
+          <originalType xsi:type="intermediate:IntermediatePrimitiveType" name="string" origin="BUILTIN" kind="PRIMITIVE"/>
+        </dataFields>
+        <dataFields name="price" qualifiedName="v01.Item.Item.price">
+          <type xsi:type="intermediate:IntermediatePrimitiveType" name="float" origin="BUILTIN" kind="PRIMITIVE" size="32"/>
+          <originalType xsi:type="intermediate:IntermediatePrimitiveType" name="float" origin="BUILTIN" kind="PRIMITIVE" size="32"/>
+        </dataFields>
+      </complexTypes>
+    </contexts>
+  </versions>
+</intermediate:IntermediateDataModel>

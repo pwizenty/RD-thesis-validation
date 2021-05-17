@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="ASCII"?>
+<intermediate:IntermediateOperationModel xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:intermediate="http://www.fhdo.de/lemma/operation/intermediate" sourceModelUri="file:///Users/phil/Entwicklung/FuE-Arbeit/OnlineShop_Github_Validierung/LEMMA_models/infrastructure/mongodb.operation">
+  <imports name="container_base" importUri="file:///Users/phil/Entwicklung/FuE-Arbeit/OnlineShop_Github_Validierung/LEMMA_models/Technology/container_base.technology" importTypeName="TECHNOLOGY"/>
+  <imports name="mongodb" importUri="file:///Users/phil/Entwicklung/FuE-Arbeit/OnlineShop_Github_Validierung/LEMMA_models/Technology/mongodb.technology" importTypeName="TECHNOLOGY"/>
+  <imports name="protocol" importUri="file:///Users/phil/Entwicklung/FuE-Arbeit/OnlineShop_Github_Validierung/LEMMA_models/Technology/protocol.technology" importTypeName="TECHNOLOGY"/>
+  <imports name="ItemService" importUri="file:///Users/phil/Entwicklung/FuE-Arbeit/pw_lemma/runtime-EclipseApplication/Microservices2020_OrderSystem/intermediate/operation models/item.xmi" importTypeName="OPERATION_NODES"/>
+  <infrastructureNodes name="MongoDB" imports="//@imports.0 //@imports.1 //@imports.2" operationEnvironment="//@infrastructureNodes.0/@reference/@technology/@environment" qualifiedInfrastructureTechnologyName="MongoDB.MongoDB">
+    <endpoints communicationType="SYNCHRONOUS" protocol="rest" dataFormat="application/json" technology="//@infrastructureNodes.0/@endpoints.0/@endpointTechnology">
+      <addresses>localhost:8761</addresses>
+      <endpointTechnology name="protocol" import="//@imports.2"/>
+    </endpoints>
+    <defaultValues value="admin" technologySpecificProperty="//@infrastructureNodes.0/@reference/@technology/@properties.0"/>
+    <defaultValues value="password" technologySpecificProperty="//@infrastructureNodes.0/@reference/@technology/@properties.1"/>
+    <defaultValues value="item" technologySpecificProperty="//@infrastructureNodes.0/@reference/@technology/@properties.3"/>
+    <defaultValues value="DockerHub" technologySpecificProperty="//@infrastructureNodes.0/@reference/@technology/@properties.4"/>
+    <defaultValues value="27017" technologySpecificProperty="//@infrastructureNodes.0/@reference/@technology/@properties.2"/>
+    <usedByNodes imported="true" name="ItemService" qualifiedTechnologyName="container_base.Kubernetes" import="//@imports.3"/>
+    <reference import="//@imports.1">
+      <technology name="MongoDB">
+        <environment environmentName="docker/mongo:latest"/>
+        <properties name="userName" type="string"/>
+        <properties name="password" type="string"/>
+        <properties name="port" type="int">
+          <featureNames>MANDATORY</featureNames>
+        </properties>
+        <properties name="database" type="string">
+          <featureNames>MANDATORY</featureNames>
+        </properties>
+        <properties name="imageType" type="string">
+          <featureNames>MANDATORY</featureNames>
+        </properties>
+      </technology>
+    </reference>
+  </infrastructureNodes>
+</intermediate:IntermediateOperationModel>

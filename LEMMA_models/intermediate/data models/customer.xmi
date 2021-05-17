@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="ASCII"?>
+<intermediate:IntermediateDataModel xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:intermediate="http://www.fhdo.de/lemma/data/intermediate" sourceModelUri="file:///Users/phil/Development/FuE-Arbeit/lemma_models/Microservices2020_OrderSystem/CustomerService/customer.data">
+  <versions name="v01">
+    <contexts name="Customer" qualifiedName="v01.Customer">
+      <complexTypes xsi:type="intermediate:IntermediateDataStructure" name="Customer" origin="DATA_MODEL" kind="STRUCTURE" qualifiedName="v01.Customer.Customer">
+        <featureNames>ENTITY</featureNames>
+        <dataFields name="id" qualifiedName="v01.Customer.Customer.id">
+          <featureNames>IDENTIFIER</featureNames>
+          <type xsi:type="intermediate:IntermediatePrimitiveType" name="long" origin="BUILTIN" kind="PRIMITIVE" size="64"/>
+          <originalType xsi:type="intermediate:IntermediatePrimitiveType" name="long" origin="BUILTIN" kind="PRIMITIVE" size="64"/>
+        </dataFields>
+        <dataFields name="lastname" qualifiedName="v01.Customer.Customer.lastname">
+          <type xsi:type="intermediate:IntermediatePrimitiveType" name="string" origin="BUILTIN" kind="PRIMITIVE"/>
+          <originalType xsi:type="intermediate:IntermediatePrimitiveType" name="string" origin="BUILTIN" kind="PRIMITIVE"/>
+        </dataFields>
+        <dataFields name="fristname" qualifiedName="v01.Customer.Customer.fristname">
+          <type xsi:type="intermediate:IntermediatePrimitiveType" name="string" origin="BUILTIN" kind="PRIMITIVE"/>
+          <originalType xsi:type="intermediate:IntermediatePrimitiveType" name="string" origin="BUILTIN" kind="PRIMITIVE"/>
+        </dataFields>
+        <dataFields name="email" qualifiedName="v01.Customer.Customer.email">
+          <type xsi:type="intermediate:IntermediatePrimitiveType" name="string" origin="BUILTIN" kind="PRIMITIVE"/>
+          <originalType xsi:type="intermediate:IntermediatePrimitiveType" name="string" origin="BUILTIN" kind="PRIMITIVE"/>
+        </dataFields>
+        <dataFields name="password" qualifiedName="v01.Customer.Customer.password">
+          <type xsi:type="intermediate:IntermediatePrimitiveType" name="string" origin="BUILTIN" kind="PRIMITIVE"/>
+          <originalType xsi:type="intermediate:IntermediatePrimitiveType" name="string" origin="BUILTIN" kind="PRIMITIVE"/>
+        </dataFields>
+      </complexTypes>
+    </contexts>
+  </versions>
+</intermediate:IntermediateDataModel>

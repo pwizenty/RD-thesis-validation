@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="ASCII"?>
+<intermediate:IntermediateDataModel xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:intermediate="http://www.fhdo.de/lemma/data/intermediate" sourceModelUri="file:///Users/phil/Development/FuE-Arbeit/lemma_models/Microservices2020_OrderSystem/OrderService/order.data">
+  <versions name="v01">
+    <contexts name="Order" qualifiedName="v01.Order">
+      <complexTypes xsi:type="intermediate:IntermediateDataStructure" name="Order" origin="DATA_MODEL" kind="STRUCTURE" qualifiedName="v01.Order.Order">
+        <featureNames>ENTITY</featureNames>
+        <dataFields name="id" qualifiedName="v01.Order.Order.id" immutable="true">
+          <featureNames>IDENTIFIER</featureNames>
+          <type xsi:type="intermediate:IntermediatePrimitiveType" name="string" origin="BUILTIN" kind="PRIMITIVE"/>
+          <originalType xsi:type="intermediate:IntermediatePrimitiveType" name="string" origin="BUILTIN" kind="PRIMITIVE"/>
+        </dataFields>
+        <dataFields name="customerId" qualifiedName="v01.Order.Order.customerId" immutable="true">
+          <type xsi:type="intermediate:IntermediatePrimitiveType" name="long" origin="BUILTIN" kind="PRIMITIVE" size="64"/>
+          <originalType xsi:type="intermediate:IntermediatePrimitiveType" name="long" origin="BUILTIN" kind="PRIMITIVE" size="64"/>
+        </dataFields>
+        <dataFields name="itemId" qualifiedName="v01.Order.Order.itemId" immutable="true">
+          <type xsi:type="intermediate:IntermediatePrimitiveType" name="string" origin="BUILTIN" kind="PRIMITIVE"/>
+          <originalType xsi:type="intermediate:IntermediatePrimitiveType" name="string" origin="BUILTIN" kind="PRIMITIVE"/>
+        </dataFields>
+        <dataFields name="orderStatus" qualifiedName="v01.Order.Order.orderStatus">
+          <type xsi:type="intermediate:IntermediateComplexType" name="OrderStatus" origin="DATA_MODEL" kind="ENUMERATION" qualifiedName="v01.Order.OrderStatus"/>
+          <originalType xsi:type="intermediate:IntermediateComplexType" name="OrderStatus" origin="DATA_MODEL" kind="ENUMERATION" qualifiedName="v01.Order.OrderStatus"/>
+        </dataFields>
+      </complexTypes>
+      <complexTypes xsi:type="intermediate:IntermediateDataStructure" name="CustomerDTO" origin="DATA_MODEL" kind="STRUCTURE" qualifiedName="v01.Order.CustomerDTO">
+        <featureNames>VALUE_OBJECT</featureNames>
+        <dataFields name="id" qualifiedName="v01.Order.CustomerDTO.id">
+          <type xsi:type="intermediate:IntermediatePrimitiveType" name="long" origin="BUILTIN" kind="PRIMITIVE" size="64"/>
+          <originalType xsi:type="intermediate:IntermediatePrimitiveType" name="long" origin="BUILTIN" kind="PRIMITIVE" size="64"/>
+        </dataFields>
+        <dataFields name="lastname" qualifiedName="v01.Order.CustomerDTO.lastname">
+          <type xsi:type="intermediate:IntermediatePrimitiveType" name="string" origin="BUILTIN" kind="PRIMITIVE"/>
+          <originalType xsi:type="intermediate:IntermediatePrimitiveType" name="string" origin="BUILTIN" kind="PRIMITIVE"/>
+        </dataFields>
+        <dataFields name="firstname" qualifiedName="v01.Order.CustomerDTO.firstname">
+          <type xsi:type="intermediate:IntermediatePrimitiveType" name="string" origin="BUILTIN" kind="PRIMITIVE"/>
+          <originalType xsi:type="intermediate:IntermediatePrimitiveType" name="string" origin="BUILTIN" kind="PRIMITIVE"/>
+        </dataFields>
+        <dataFields name="email" qualifiedName="v01.Order.CustomerDTO.email">
+          <type xsi:type="intermediate:IntermediatePrimitiveType" name="string" origin="BUILTIN" kind="PRIMITIVE"/>
+          <originalType xsi:type="intermediate:IntermediatePrimitiveType" name="string" origin="BUILTIN" kind="PRIMITIVE"/>
+        </dataFields>
+        <dataFields name="password" qualifiedName="v01.Order.CustomerDTO.password">
+          <type xsi:type="intermediate:IntermediatePrimitiveType" name="string" origin="BUILTIN" kind="PRIMITIVE"/>
+          <originalType xsi:type="intermediate:IntermediatePrimitiveType" name="string" origin="BUILTIN" kind="PRIMITIVE"/>
+        </dataFields>
+      </complexTypes>
+      <complexTypes xsi:type="intermediate:IntermediateDataStructure" name="ItemDTO" origin="DATA_MODEL" kind="STRUCTURE" qualifiedName="v01.Order.ItemDTO">
+        <featureNames>VALUE_OBJECT</featureNames>
+        <dataFields name="id" qualifiedName="v01.Order.ItemDTO.id">
+          <type xsi:type="intermediate:IntermediatePrimitiveType" name="string" origin="BUILTIN" kind="PRIMITIVE"/>
+          <originalType xsi:type="intermediate:IntermediatePrimitiveType" name="string" origin="BUILTIN" kind="PRIMITIVE"/>
+        </dataFields>
+        <dataFields name="itemname" qualifiedName="v01.Order.ItemDTO.itemname">
+          <type xsi:type="intermediate:IntermediatePrimitiveType" name="string" origin="BUILTIN" kind="PRIMITIVE"/>
+          <originalType xsi:type="intermediate:IntermediatePrimitiveType" name="string" origin="BUILTIN" kind="PRIMITIVE"/>
+        </dataFields>
+        <dataFields name="description" qualifiedName="v01.Order.ItemDTO.description">
+          <type xsi:type="intermediate:IntermediatePrimitiveType" name="string" origin="BUILTIN" kind="PRIMITIVE"/>
+          <originalType xsi:type="intermediate:IntermediatePrimitiveType" name="string" origin="BUILTIN" kind="PRIMITIVE"/>
+        </dataFields>
+        <dataFields name="price" qualifiedName="v01.Order.ItemDTO.price">
+          <type xsi:type="intermediate:IntermediatePrimitiveType" name="float" origin="BUILTIN" kind="PRIMITIVE" size="32"/>
+          <originalType xsi:type="intermediate:IntermediatePrimitiveType" name="float" origin="BUILTIN" kind="PRIMITIVE" size="32"/>
+        </dataFields>
+      </complexTypes>
+      <complexTypes xsi:type="intermediate:IntermediateDataStructure" name="OrderDetail" origin="DATA_MODEL" kind="STRUCTURE" qualifiedName="v01.Order.OrderDetail">
+        <featureNames>VALUE_OBJECT</featureNames>
+        <dataFields name="orderId" qualifiedName="v01.Order.OrderDetail.orderId">
+          <type xsi:type="intermediate:IntermediatePrimitiveType" name="string" origin="BUILTIN" kind="PRIMITIVE"/>
+          <originalType xsi:type="intermediate:IntermediatePrimitiveType" name="string" origin="BUILTIN" kind="PRIMITIVE"/>
+        </dataFields>
+        <dataFields name="cusomerDTO" qualifiedName="v01.Order.OrderDetail.cusomerDTO">
+          <type xsi:type="intermediate:IntermediateComplexType" name="CustomerDTO" origin="DATA_MODEL" kind="STRUCTURE" qualifiedName="v01.Order.CustomerDTO"/>
+          <originalType xsi:type="intermediate:IntermediateComplexType" name="CustomerDTO" origin="DATA_MODEL" kind="STRUCTURE" qualifiedName="v01.Order.CustomerDTO"/>
+        </dataFields>
+        <dataFields name="itemDTO" qualifiedName="v01.Order.OrderDetail.itemDTO">
+          <type xsi:type="intermediate:IntermediateComplexType" name="ItemDTO" origin="DATA_MODEL" kind="STRUCTURE" qualifiedName="v01.Order.ItemDTO"/>
+          <originalType xsi:type="intermediate:IntermediateComplexType" name="ItemDTO" origin="DATA_MODEL" kind="STRUCTURE" qualifiedName="v01.Order.ItemDTO"/>
+        </dataFields>
+      </complexTypes>
+      <complexTypes xsi:type="intermediate:IntermediateEnumeration" name="OrderStatus" origin="DATA_MODEL" kind="ENUMERATION" qualifiedName="v01.Order.OrderStatus">
+        <fields name="CREATED" qualifiedName="v01.Order.OrderStatus.CREATED"/>
+        <fields name="PAYED" qualifiedName="v01.Order.OrderStatus.PAYED"/>
+        <fields name="SHIPPED" qualifiedName="v01.Order.OrderStatus.SHIPPED"/>
+      </complexTypes>
+    </contexts>
+  </versions>
+</intermediate:IntermediateDataModel>

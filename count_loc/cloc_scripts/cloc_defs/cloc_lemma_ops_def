@@ -1,0 +1,7 @@
+LEMMA
+    filter call_regexp_common C++
+    extension operation
+    extension sh
+    extension yml
+    3rd_gen_scale 5.00
+    

@@ -1,0 +1,29 @@
+import microservices from "item.services" as itemService
+import technology from "../Technology/container_base.technology" as container_base
+import technology from "../Technology/javaWithSpring.technology" as java
+import nodes from "../infrastructure/mongodb.operation" as mongo
+import nodes from "../infrastructure/eureka.operation" as eureka
+import nodes from "../infrastructure/zuul.operation" as zuul
+
+
+@technology(container_base)
+@technology(java)
+container ItemService deployment technology container_base::_deployment.Kubernetes
+    with operation environment "openjdk:11-jdk-slim"
+    deploys itemService::v01.de.fhdo.online_shop.itemservice.Itemservice
+    depends on nodes mongo::MongoDB,
+    	eureka::Eureka,
+    	zuul::Zuul {
+        default values {
+            springApplicationName="ItemService"
+            serverPort=8081
+            springDataMongodbUsername="admin"
+            stringDataMongodbPassword="password"
+            springDataMongodbHost="mongodb"
+            springDataMongodbPort=27017
+            springDataMongodbDatabase="item"
+            eurekaUri="http://eureka:8761"
+            basic endpoints {java::_protocols.rest : "http://localhost:8081/itemservice";}
+            //basic endpoints {java::_protocols.rest : "http://itemservice:8081/itemservice";}
+        }
+}

@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="ASCII"?>
+<intermediate:IntermediateOperationModel xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:intermediate="http://www.fhdo.de/lemma/operation/intermediate" sourceModelUri="file:///Users/phil/Entwicklung/FuE-Arbeit/OnlineShop_Github_Validierung/LEMMA_models/ItemService/item_aspect.operation">
+  <imports name="itemService" importUri="file:///Users/phil/Entwicklung/FuE-Arbeit/pw_lemma/runtime-EclipseApplication/Microservices2020_OrderSystem/intermediate/service models/item.xmi" importTypeName="MICROSERVICES"/>
+  <imports name="container_base" importUri="file:///Users/phil/Entwicklung/FuE-Arbeit/OnlineShop_Github_Validierung/LEMMA_models/Technology/container_base.technology" importTypeName="TECHNOLOGY"/>
+  <imports name="protocol" importUri="file:///Users/phil/Entwicklung/FuE-Arbeit/OnlineShop_Github_Validierung/LEMMA_models/Technology/protocol.technology" importTypeName="TECHNOLOGY"/>
+  <containers name="ItemService" imports="//@imports.1 //@imports.2" operationEnvironment="//@containers.0/@technologyReference/@technology/@environment" qualifiedDeploymentTechnologyName="container_base.Kubernetes">
+    <deployedServices name="de.fhdo.online_shop.itemservice.Itemservice" version="v01" qualifiedName="v01.de.fhdo.online_shop.itemservice.Itemservice" imported="true" import="//@imports.0" effectivelyImplemented="true" microserviceType="FUNCTIONAL" visibility="PUBLIC"/>
+    <endpoints communicationType="SYNCHRONOUS" protocol="rest" dataFormat="application/json" technology="//@containers.0/@endpoints.0/@endpointTechnology">
+      <addresses>http://localhost:8081/item</addresses>
+      <endpointTechnology name="protocol" import="//@imports.2"/>
+    </endpoints>
+    <defaultValues value="ItemService" technologySpecificProperty="//@containers.0/@technologyReference/@technology/@properties.0"/>
+    <defaultValues value="8081" technologySpecificProperty="//@containers.0/@technologyReference/@technology/@properties.1"/>
+    <defaultValues value="mongo" technologySpecificProperty="//@containers.0/@technologyReference/@technology/@properties.5"/>
+    <defaultValues value="27017" technologySpecificProperty="//@containers.0/@technologyReference/@technology/@properties.6"/>
+    <defaultValues value="item" technologySpecificProperty="//@containers.0/@technologyReference/@technology/@properties.8"/>
+    <aspects name="Dockerfile" import="//@imports.1">
+      <featureNames>SINGLE_VALUED</featureNames>
+      <properties name="contents" type="string">
+        <featureNames>MANDATORY</featureNames>
+      </properties>
+      <propertyValues value="&#xA;            FROM adoptopenjdk/openjdk11&#xA;            ENV APP_FILE itemService-0.0.1-SNAPSHOT.jar&#xA;            ENV APP_HOME /usr/apps&#xA;            EXPOSE 8081:8081&#xA;            COPY target/$APP_FILE $APP_HOME/&#xA;            WORKDIR $APP_HOME&#xA;            ENTRYPOINT [&quot;sh&quot;, &quot;-c&quot;]&#xA;            CMD [&quot;exec java -jar $APP_FILE&quot;]&#xA;            " property="//@containers.0/@aspects.0/@properties.0"/>
+    </aspects>
+    <aspects name="ComposePart" import="//@imports.1">
+      <featureNames>SINGLE_VALUED</featureNames>
+      <properties name="contents" type="string">
+        <featureNames>MANDATORY</featureNames>
+      </properties>
+      <propertyValues value="&#xA;              itemService:&#xA;                build: itemService/&#xA;                container_name: itemService&#xA;                ports:&#xA;                  - &quot;8081:8081&quot;&#xA;            " property="//@containers.0/@aspects.1/@properties.0"/>
+    </aspects>
+    <aspects name="KubernetesDeployment" import="//@imports.1">
+      <featureNames>SINGLE_VALUED</featureNames>
+      <properties name="contents" type="string">
+        <featureNames>MANDATORY</featureNames>
+      </properties>
+      <propertyValues value="&#xA;            apiVersion: apps/v1&#xA;            kind: Deployment&#xA;            metadata:&#xA;              creationTimestamp: null&#xA;              labels:&#xA;                app: itemService&#xA;              name: itemService&#xA;            spec:&#xA;              replicas: 1&#xA;              selector:&#xA;                matchLabels:&#xA;                  app: itemService&#xA;              strategy: {}&#xA;              template:&#xA;                metadata:&#xA;                  creationTimestamp: null&#xA;                  labels:&#xA;                    app: itemService&#xA;                spec:&#xA;                  containers:&#xA;                  - image: itemService&#xA;                    imagePullPolicy: &quot;Never&quot;&#xA;                    name: itemService&#xA;                    resources: {}&#xA;            status: {}&#xA;            ---&#xA;            apiVersion: v1&#xA;            kind: Service&#xA;            metadata:&#xA;              creationTimestamp: null&#xA;              labels:&#xA;                app: itemService&#xA;              name: itemService&#xA;            spec:&#xA;              ports:&#xA;              - name: 8081-8081&#xA;                port: 8081&#xA;                protocol: TCP&#xA;                targetPort: 8081&#xA;              selector:&#xA;                app: itemService&#xA;              type: ClusterIP&#xA;            status:&#xA;              loadBalancer: {}&#xA;            " property="//@containers.0/@aspects.2/@properties.0"/>
+    </aspects>
+    <technologyReference import="//@imports.1">
+      <technology name="Kubernetes">
+        <environment environmentName="openjdk:11-jdk-slim" default="true"/>
+        <properties name="springApplicationName" type="string"/>
+        <properties name="serverPort" type="int"/>
+        <properties name="springDatasourceUsername" type="string"/>
+        <properties name="springDatasourcePassword" type="string"/>
+        <properties name="springDatasourceUrl" type="string"/>
+        <properties name="springDataMongodbHost" type="string"/>
+        <properties name="springDataMongodbPort" type="int"/>
+        <properties name="springDataMongodbUri" type="string"/>
+        <properties name="springDataMongodbDatabase" type="string"/>
+        <properties name="springDataMongodbUsername" type="string"/>
+        <properties name="stringDataMongodbPassword" type="string"/>
+        <properties name="eurekaUri" type="string"/>
+      </technology>
+    </technologyReference>
+  </containers>
+</intermediate:IntermediateOperationModel>

@@ -1,0 +1,22 @@
+import technology from "../Technology/container_base.technology" as container_base
+import technology from "../Technology/mongodb.technology" as mongodb
+import technology from "../Technology/protocol.technology" as ^protocol
+import nodes from "../ItemService/item.operation" as ItemService
+
+@technology(container_base)
+@technology(mongodb)
+@technology(^protocol)
+MongoDB is mongodb::_infrastructure.MongoDB
+    with operation environment "docker/mongo:latest"
+    used by nodes ItemService::ItemService {
+        default values {
+			userName="admin"
+			password="password"
+            database="item"
+            imageType="DockerHub"
+            port=27017
+        }
+    endpoints {
+    	^protocol::_protocols.rest: "localhost:8761";
+    }
+}

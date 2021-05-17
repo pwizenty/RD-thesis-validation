@@ -1,0 +1,40 @@
+import datatypes from "item.data" as itemData
+import technology from "../Technology/javaWithSpring.technology" as java
+
+@technology(java)
+public functional microservice de.fhdo.online_shop.itemservice.Itemservice version v01 {
+    @endpoints(java::_protocols.rest: "/resources/v1";)
+    interface ItemInterface {
+        @endpoints(java::_protocols.rest: "/item";)
+        @java::_aspects.PostMapping
+        createItem(
+            sync inout item: itemData::v01.Item.Item
+        );
+
+        @endpoints(java::_protocols.rest: "/item";)
+        @java::_aspects.PutMapping
+        updateItem(
+            sync inout item: itemData::v01.Item.Item
+        );
+
+        @endpoints(java::_protocols.rest: "/item/{id}";)
+        @java::_aspects.GetMapping
+        readItem(
+            @java::_aspects.RequestParam(value="id")
+            sync in id: string,
+            sync out item: itemData::v01.Item.Item
+        );
+
+        @endpoints(java::_protocols.rest: "/items";)
+        @java::_aspects.GetMapping
+        readAllItems(
+            sync out items: itemData::v01.Item.Item
+        );
+
+        @endpoints(java::_protocols.rest: "/item";)
+        @java::_aspects.DeleteMapping
+        deleteItem(
+            sync in item: itemData::v01.Item.Item
+        );
+    }
+}

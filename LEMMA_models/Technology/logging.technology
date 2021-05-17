@@ -1,0 +1,14 @@
+technology LoogingMonitor {
+	infrastructure technologies {
+		Logging {
+			operation environments = "openjdk:11-jdk-slim";
+			service properties {
+               string loggingUrl;
+            }
+		}
+	}
+
+		operation aspects {
+		aspect isLoggingMonitor <singleval> for infrastructure;
+	}
+}

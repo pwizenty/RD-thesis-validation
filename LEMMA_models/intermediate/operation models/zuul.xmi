@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="ASCII"?>
+<intermediate:IntermediateOperationModel xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:intermediate="http://www.fhdo.de/lemma/operation/intermediate" sourceModelUri="file:///Users/phil/Entwicklung/FuE-Arbeit/OnlineShop_Github_Validierung/LEMMA_models/infrastructure/zuul.operation">
+  <imports name="Zuul" importUri="file:///Users/phil/Entwicklung/FuE-Arbeit/OnlineShop_Github_Validierung/LEMMA_models/Technology/zuul.technology" importTypeName="TECHNOLOGY"/>
+  <imports name="container_base" importUri="file:///Users/phil/Entwicklung/FuE-Arbeit/OnlineShop_Github_Validierung/LEMMA_models/Technology/container_base.technology" importTypeName="TECHNOLOGY"/>
+  <imports name="protocol" importUri="file:///Users/phil/Entwicklung/FuE-Arbeit/OnlineShop_Github_Validierung/LEMMA_models/Technology/protocol.technology" importTypeName="TECHNOLOGY"/>
+  <imports name="Eureka" importUri="file:///Users/phil/Entwicklung/FuE-Arbeit/OnlineShop_Github_Validierung/LEMMA_models/Technology/eureka.technology" importTypeName="TECHNOLOGY"/>
+  <imports name="customerService" importUri="file:///Users/phil/Entwicklung/FuE-Arbeit/pw_lemma/runtime-EclipseApplication/Microservices2020_OrderSystem/intermediate/operation models/customer.xmi" importTypeName="OPERATION_NODES"/>
+  <imports name="itemService" importUri="file:///Users/phil/Entwicklung/FuE-Arbeit/pw_lemma/runtime-EclipseApplication/Microservices2020_OrderSystem/intermediate/operation models/item.xmi" importTypeName="OPERATION_NODES"/>
+  <imports name="orderService" importUri="file:///Users/phil/Entwicklung/FuE-Arbeit/pw_lemma/runtime-EclipseApplication/Microservices2020_OrderSystem/intermediate/operation models/order.xmi" importTypeName="OPERATION_NODES"/>
+  <imports name="eureka" importUri="file:///Users/phil/Entwicklung/FuE-Arbeit/pw_lemma/runtime-EclipseApplication/Microservices2020_OrderSystem/intermediate/operation models/eureka.xmi" importTypeName="OPERATION_NODES"/>
+  <infrastructureNodes name="Zuul" imports="//@imports.0 //@imports.1 //@imports.2 //@imports.3" operationEnvironment="//@infrastructureNodes.0/@reference/@technology/@environment" qualifiedInfrastructureTechnologyName="Zuul.Zuul">
+    <endpoints communicationType="SYNCHRONOUS" protocol="rest" dataFormat="application/json" technology="//@infrastructureNodes.0/@endpoints.0/@endpointTechnology">
+      <addresses>http://localhost:8080</addresses>
+      <endpointTechnology name="protocol" import="//@imports.2"/>
+    </endpoints>
+    <defaultValues value="Zuul" technologySpecificProperty="//@infrastructureNodes.0/@reference/@technology/@properties.0"/>
+    <defaultValues value="8080" technologySpecificProperty="//@infrastructureNodes.0/@reference/@technology/@properties.1"/>
+    <defaultValues value="http://eureka:8761" technologySpecificProperty="//@infrastructureNodes.0/@reference/@technology/@properties.6"/>
+    <defaultValues value="zuul" technologySpecificProperty="//@infrastructureNodes.0/@reference/@technology/@properties.3"/>
+    <defaultValues value="de.fhdo.puls.service.zuul" technologySpecificProperty="//@infrastructureNodes.0/@reference/@technology/@properties.2"/>
+    <defaultValues value="0.0.1-SNAPSHOT" technologySpecificProperty="//@infrastructureNodes.0/@reference/@technology/@properties.4"/>
+    <defaultValues value="zuul" technologySpecificProperty="//@infrastructureNodes.0/@reference/@technology/@properties.5"/>
+    <defaultValues value="SpringComponent" technologySpecificProperty="//@infrastructureNodes.0/@reference/@technology/@properties.7"/>
+    <defaultValues value="Kotlin" technologySpecificProperty="//@infrastructureNodes.0/@reference/@technology/@properties.8"/>
+    <defaultValues value="http://eureka:8761" technologySpecificProperty="//@infrastructureNodes.0/@reference/@technology/@properties.6"/>
+    <dependsOnNodes imported="true" name="Eureka" qualifiedTechnologyName="Eureka.Eureka" import="//@imports.7"/>
+    <usedByNodes imported="true" name="CustomerService" qualifiedTechnologyName="container_base.Kubernetes" import="//@imports.4"/>
+    <usedByNodes imported="true" name="ItemService" qualifiedTechnologyName="container_base.Kubernetes" import="//@imports.5"/>
+    <usedByNodes imported="true" name="OrderService" qualifiedTechnologyName="container_base.Kubernetes" import="//@imports.6"/>
+    <reference import="//@imports.0">
+      <technology name="Zuul">
+        <environment environmentName="openjdk:11-jdk-slim"/>
+        <properties name="hostname" type="string">
+          <featureNames>MANDATORY</featureNames>
+        </properties>
+        <properties name="port" type="int">
+          <featureNames>MANDATORY</featureNames>
+        </properties>
+        <properties name="mavenGroupId" type="string">
+          <featureNames>MANDATORY</featureNames>
+        </properties>
+        <properties name="mavenArtifactId" type="string">
+          <featureNames>MANDATORY</featureNames>
+        </properties>
+        <properties name="mavenVersion" type="string">
+          <featureNames>MANDATORY</featureNames>
+        </properties>
+        <properties name="mavenName" type="string">
+          <featureNames>MANDATORY</featureNames>
+        </properties>
+        <properties name="eurekaUri" type="string">
+          <featureNames>MANDATORY</featureNames>
+        </properties>
+        <properties name="imageType" type="string">
+          <featureNames>MANDATORY</featureNames>
+        </properties>
+        <properties name="programmingLanguage" type="string">
+          <featureNames>MANDATORY</featureNames>
+        </properties>
+      </technology>
+    </reference>
+  </infrastructureNodes>
+</intermediate:IntermediateOperationModel>

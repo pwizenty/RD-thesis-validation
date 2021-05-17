@@ -1,0 +1,26 @@
+import microservices from "customer.services" as customerService
+import technology from "../Technology/container_base.technology" as container_base
+import technology from "../Technology/protocol.technology" as ^protocol
+import nodes from "../infrastructure/mariadb.operation" as MariaDB
+import nodes from "../infrastructure/eureka.operation" as eureka
+import nodes from "../infrastructure/zuul.operation" as zuul
+
+@technology(container_base)
+@technology(^protocol)
+container CustomerService deployment technology container_base::_deployment.Kubernetes
+    with operation environment "openjdk:11-jdk-slim"
+    deploys customerService::v01.de.fhdo.online_shop.customerservice.Customerservice
+    depends on nodes MariaDB::MariaDB,
+    	eureka::Eureka,
+    	zuul::Zuul
+    {
+        default values {
+            springApplicationName="CustomerService"
+            serverPort=8082
+            springDatasourceUrl="jdbc:mariadb://mariadb:3306/customer"
+            springDataMongodbUsername="root"
+            springDatasourcePassword="password"
+            eurekaUri="http://eureka:8761"
+            basic endpoints {^protocol::_protocols.rest : "http://customer:8082/item";}
+        }
+}

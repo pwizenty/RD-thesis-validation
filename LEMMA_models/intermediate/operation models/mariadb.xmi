@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="ASCII"?>
+<intermediate:IntermediateOperationModel xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:intermediate="http://www.fhdo.de/lemma/operation/intermediate" sourceModelUri="file:///Users/phil/Entwicklung/FuE-Arbeit/OnlineShop_Github_Validierung/LEMMA_models/infrastructure/mariadb.operation">
+  <imports name="container_base" importUri="file:///Users/phil/Entwicklung/FuE-Arbeit/OnlineShop_Github_Validierung/LEMMA_models/Technology/container_base.technology" importTypeName="TECHNOLOGY"/>
+  <imports name="mariadb" importUri="file:///Users/phil/Entwicklung/FuE-Arbeit/OnlineShop_Github_Validierung/LEMMA_models/Technology/mariadb.technology" importTypeName="TECHNOLOGY"/>
+  <imports name="protocol" importUri="file:///Users/phil/Entwicklung/FuE-Arbeit/OnlineShop_Github_Validierung/LEMMA_models/Technology/protocol.technology" importTypeName="TECHNOLOGY"/>
+  <imports name="CustomerService" importUri="file:///Users/phil/Entwicklung/FuE-Arbeit/pw_lemma/runtime-EclipseApplication/Microservices2020_OrderSystem/intermediate/operation models/customer.xmi" importTypeName="OPERATION_NODES"/>
+  <infrastructureNodes name="MariaDB" imports="//@imports.0 //@imports.1 //@imports.2" operationEnvironment="//@infrastructureNodes.0/@reference/@technology/@environment" qualifiedInfrastructureTechnologyName="MariaDB.MariaDB">
+    <endpoints communicationType="SYNCHRONOUS" protocol="rest" dataFormat="application/json" technology="//@infrastructureNodes.0/@endpoints.0/@endpointTechnology">
+      <addresses>localhost:3307</addresses>
+      <endpointTechnology name="protocol" import="//@imports.2"/>
+    </endpoints>
+    <defaultValues value="admin" technologySpecificProperty="//@infrastructureNodes.0/@reference/@technology/@properties.0"/>
+    <defaultValues value="maridb" technologySpecificProperty="//@infrastructureNodes.0/@reference/@technology/@properties.3"/>
+    <defaultValues value="password" technologySpecificProperty="//@infrastructureNodes.0/@reference/@technology/@properties.2"/>
+    <defaultValues value="password" technologySpecificProperty="//@infrastructureNodes.0/@reference/@technology/@properties.1"/>
+    <defaultValues value="dockerhub" technologySpecificProperty="//@infrastructureNodes.0/@reference/@technology/@properties.5"/>
+    <defaultValues value="3306" technologySpecificProperty="//@infrastructureNodes.0/@reference/@technology/@properties.4"/>
+    <defaultValues value="customer" technologySpecificProperty="//@infrastructureNodes.0/@reference/@technology/@properties.6"/>
+    <usedByNodes imported="true" name="CustomerService" qualifiedTechnologyName="container_base.Kubernetes" import="//@imports.3"/>
+    <reference import="//@imports.1">
+      <technology name="MariaDB">
+        <environment environmentName="docker/mariadb:latest"/>
+        <properties name="userName" type="string"/>
+        <properties name="rootPassword" type="string">
+          <featureNames>MANDATORY</featureNames>
+        </properties>
+        <properties name="userPassword" type="string"/>
+        <properties name="hostName" type="string">
+          <featureNames>MANDATORY</featureNames>
+        </properties>
+        <properties name="port" type="string">
+          <featureNames>MANDATORY</featureNames>
+        </properties>
+        <properties name="imageType" type="string">
+          <featureNames>MANDATORY</featureNames>
+        </properties>
+        <properties name="dataBase" type="string">
+          <featureNames>MANDATORY</featureNames>
+        </properties>
+      </technology>
+    </reference>
+  </infrastructureNodes>
+</intermediate:IntermediateOperationModel>

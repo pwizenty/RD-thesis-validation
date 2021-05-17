@@ -1,0 +1,35 @@
+import technology from "../Technology/zuul.technology" as Zuul
+import technology from "../Technology/container_base.technology" as container_base
+import technology from "../Technology/protocol.technology" as ^protocol
+import technology from "../Technology/eureka.technology" as Eureka
+import nodes from "../CustomerService/customer.operation" as customerService
+import nodes from "../ItemService/item.operation" as itemService
+import nodes from "../OrderService/order.operation" as orderService
+import nodes from "eureka.operation" as eureka
+
+
+@technology(Zuul)
+@technology(container_base)
+@technology(^protocol)
+@technology(Eureka)
+Zuul is Zuul::_infrastructure.Zuul
+    with operation environment "openjdk:11-jdk-slim"
+    depends on nodes eureka::Eureka
+    used by nodes customerService::CustomerService,
+    	itemService::ItemService,
+    	orderService::OrderService
+	{
+    default values {
+        hostname="Zuul"
+        port=8080
+        eurekaUri="http://eureka:8761"
+        mavenArtifactId="zuul"
+        mavenGroupId="de.fhdo.puls.service.zuul"
+        mavenVersion="0.0.1-SNAPSHOT"
+        mavenName="zuul"
+        imageType="SpringComponent"
+        programmingLanguage="Kotlin"
+        eurekaUri="http://eureka:8761"
+    }
+    endpoints {^protocol::_protocols.rest: "http://localhost:8080";}
+}
